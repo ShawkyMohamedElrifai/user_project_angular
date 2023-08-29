@@ -1,0 +1,124 @@
+<div class="box mt-5">
+<div class="my-2 m-25">
+    <!-- <app-select [data]="categoriesArr" [title]="'Categories'" (selectedvalue)="filterCategory($event)" ></app-select> -->
+  </div> 
+
+  <div class="row">
+    <div class="col-md-3 col-sm-12" *ngFor="let item of productArr"    >
+      <!-- <app-product1 [data]="item" (item)="addToCart($event)"></app-product1> -->
+    </div>
+  </div>
+</div>
+ 
+
+
+
+
+<h1>   Add To New Product</h1>
+<form [formGroup]="form">
+  <div class="row">
+    <div class="col-md-4 col-sm-12">
+      <label for="">Title</label>
+      <input type="text" formControlName="title" class="form-control" placeholder="title">
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <label for="">Price</label>
+      <input type="text" formControlName="price" class="form-control" placeholder="title">
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <app-select [data]="categoriesArr" [title]="'Categories'" (selectedvalue)="getSelectedCategory($event)" [all]="false" [select]="form.value.category"></app-select>
+    </div>
+
+    <div class="col-md-4 col-sm-12">
+      <label for="">Image</label>
+      <img src="{{base64}}" alt="">
+      <input type="file" class="form-control" (change)="getImagePath($event)">
+    </div>
+    <div class="col-md-8 col-sm-12">
+      <label for="">Description</label>
+     <textarea class="form-control" formControlName="description" placeholder="type Here"></textarea>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end mt-3">
+       <button class="btn btn-success"[disabled]="!form.valid" (click)="addProduct()">Add Product</button>
+  </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table class="table table-striped">
+  <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th></th>
+
+      </tr>
+  </thead>
+<tbody>
+    <tr *ngFor=" let item of productArr; let i =index">
+      <td><img src="{{item.image}}" alt=""></td>
+      <td>{{item.title}}</td>
+      <td>{{item.category}}</td>
+      <td>{{item.price}}</td>
+      <td><button class="btn btn-warning" data-toggle="modal" (click)="update(item)" >Update</button></td>
+
+    </tr>
+</tbody>
+</table>
+
+
+
+
+
+<!-- 
+<div class="home">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let item of products">
+      <div class="card">
+        <div class="image">
+          
+          <img src="{{item.image}}" alt="" />
+        </div>
+        <div class="content">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+          <span class="price"> {{ item.price }} EGP</span>
+        </div>
+        <button class="btn btn-primary">Add To Cart</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+ -->
+<!-- <div class="d-flex w-50">
+              <input type="number" class="form-control">
+              <button class="btn btn-danger">Add</button>
+               
+            </div> -->
+
+
+
+
+
+
+
+
+
+
+
+ 
